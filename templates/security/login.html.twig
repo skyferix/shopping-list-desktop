@@ -25,17 +25,17 @@
                     <form class="bg-white rounded-5 shadow-5-strong p-5">
                         <div class="form-outline mb-4">
                             <input type="email" id="form1Example1" class="form-control">
-                            <label class="form-label" for="form1Example1" style="margin-left: 0px;">Email address</label>
+                            <label class="form-label" for="form1Example1" style="margin-left: 0px;">{% trans %}login.email{% endtrans %}</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <div class="form-outline mb-4">
                             <input type="password" id="form1Example2" class="form-control">
-                            <label class="form-label" for="form1Example2" style="margin-left: 0px;">Password</label>
+                            <label class="form-label" for="form1Example2" style="margin-left: 0px;">{% trans %}login.password.password{% endtrans %}</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <div class="row mb-4">
                             <div class="col text-center">
-                                <a href="#!">Forgot password?</a>
+                                <a href="#!">{% trans %}login.password.forgot{% endtrans %}?</a>
                             </div>
                         </div>
 
@@ -43,8 +43,25 @@
                                value="{{ csrf_token('authenticate') }}"
                         >
 
-                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        <button type="submit" class="btn btn-primary btn-block">{% trans %}login.sign.in{% endtrans %}</button>
                     </form>
+
+                    <div class="dropdown d-flex justify-content-center mt-3 ">
+                        <button
+                                class="btn btn-rounded btn-info dropdown-toggle"
+                                type="button"
+                                id="languageSwitch"
+                                data-mdb-toggle="dropdown"
+                                aria-expanded="false"
+                        >
+                            <img width="20" height="20" src="{{ asset(language.flag) }}"> {{ language.trans }}
+                        </button>
+                        <ul id="language-wrap" class="dropdown-menu" aria-labelledby="languageSwitch">
+                            <li><a class="dropdown-item" href="/language/lt"><img width="20" height="20" src="{{ asset('build/images/lt.png') }}"> {% trans %}lang.lt{% endtrans %}</a></li>
+                            <li><a class="dropdown-item" href="/language/en"><img width="20" height="20" src="{{ asset('build/images/en.png') }}"> {% trans %}lang.en{% endtrans %}</a></li>
+                            <li><a class="dropdown-item" href="/language/pl"><img width="20" height="20" src="{{ asset('build/images/pl.png') }}"> {% trans %}lang.pl{% endtrans %}</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
