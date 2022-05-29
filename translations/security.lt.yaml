@@ -1,0 +1,3 @@
+error:
+    500: 'Įvyko klaida, bandykite vėliau'
+    401: 'Neteisingi prisijungimo duomenis'

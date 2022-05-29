@@ -1,0 +1,3 @@
+error:
+    500: 'Błąd systemu, sprubujcie później'
+    401: 'E-mail lub hasło są nieprawidłowe'
