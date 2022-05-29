@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bubble') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('bubble') }}
+{% endblock %}
+
+{% block body %}
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-md-8">
+                    <form class="bg-white rounded-5 shadow-5-strong p-5">
+                        <div class="form-outline mb-4">
+                            <input type="email" id="form1Example1" class="form-control">
+                            <label class="form-label" for="form1Example1" style="margin-left: 0px;">Email address</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <div class="form-outline mb-4">
+                            <input type="password" id="form1Example2" class="form-control">
+                            <label class="form-label" for="form1Example2" style="margin-left: 0px;">Password</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <div class="row mb-4">
+                            <div class="col text-center">
+                                <a href="#!">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
