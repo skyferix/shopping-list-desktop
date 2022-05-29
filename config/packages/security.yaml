@@ -14,8 +14,9 @@ security:
             logout:
                 path: logout
     access_control:
-         - { path: ^/login, roles: PUBLIC_ACCESS }
-         - { path: ^/, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/language, roles: PUBLIC_ACCESS }
+        - { path: ^/, roles: ROLE_USER }
 
 when@test:
     security:

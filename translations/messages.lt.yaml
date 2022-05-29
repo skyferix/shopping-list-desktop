@@ -1,0 +1,11 @@
+login:
+    email: 'El. paštas'
+    password:
+        password: 'Slaptažodis'
+        forgot: 'Pamiršote slaptažodį'
+    sign.in: 'Prisijungti'
+lang:
+    lang: 'Kalbos'
+    lt: 'Lietuvių'
+    en: 'Anglų'
+    pl: 'Lenkų'

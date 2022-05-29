@@ -1,0 +1,11 @@
+login:
+    email: 'E-mail'
+    password:
+        password: 'Hasło'
+        forgot: 'Nie pamiętasz hasła'
+    sign.in: 'Zaloguj się'
+lang:
+    lang: 'Język'
+    lt: 'Litewski'
+    en: 'Angielski'
+    pl: 'Polski'
