@@ -1,4 +1,10 @@
 {
+    "doctrine/inflector": {
+        "version": "2.0.4"
+    },
+    "nikic/php-parser": {
+        "version": "v4.13.2"
+    },
     "psr/cache": {
         "version": "3.0.0"
     },
@@ -10,6 +16,9 @@
     },
     "psr/log": {
         "version": "3.0.0"
+    },
+    "symfony/asset": {
+        "version": "v6.0.7"
     },
     "symfony/cache": {
         "version": "v6.0.9"
@@ -87,11 +96,29 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v6.0.9"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v3.0.1"
+    },
     "symfony/http-foundation": {
         "version": "v6.0.9"
     },
     "symfony/http-kernel": {
         "version": "v6.0.9"
+    },
+    "symfony/maker-bundle": {
+        "version": "1.43",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
+    },
+    "symfony/password-hasher": {
+        "version": "v6.0.8"
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.25.0"
@@ -104,6 +131,12 @@
     },
     "symfony/polyfill-php81": {
         "version": "v1.25.0"
+    },
+    "symfony/property-access": {
+        "version": "v6.0.8"
+    },
+    "symfony/property-info": {
+        "version": "v6.0.9"
     },
     "symfony/routing": {
         "version": "6.0",
@@ -121,11 +154,54 @@
     "symfony/runtime": {
         "version": "v6.0.8"
     },
+    "symfony/security-bundle": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.0",
+            "ref": "8a5b112826f7d3d5b07027f93786ae11a1c7de48"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
+    },
+    "symfony/security-core": {
+        "version": "v6.0.8"
+    },
+    "symfony/security-csrf": {
+        "version": "v6.0.9"
+    },
+    "symfony/security-http": {
+        "version": "v6.0.9"
+    },
     "symfony/service-contracts": {
         "version": "v3.0.1"
     },
+    "symfony/stopwatch": {
+        "version": "v6.0.5"
+    },
     "symfony/string": {
         "version": "v6.0.9"
+    },
+    "symfony/translation-contracts": {
+        "version": "v3.0.1"
+    },
+    "symfony/twig-bridge": {
+        "version": "v6.0.9"
+    },
+    "symfony/twig-bundle": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.4",
+            "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
+        },
+        "files": [
+            "config/packages/twig.yaml",
+            "templates/base.html.twig"
+        ]
     },
     "symfony/var-dumper": {
         "version": "v6.0.9"
@@ -133,7 +209,45 @@
     "symfony/var-exporter": {
         "version": "v6.0.9"
     },
+    "symfony/web-profiler-bundle": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "24bbc3d84ef2f427f82104f766014e799eefcc3e"
+        },
+        "files": [
+            "config/packages/web_profiler.yaml",
+            "config/routes/web_profiler.yaml"
+        ]
+    },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.14",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.10",
+            "ref": "642c9239e1c76e037f5b65446d09eba836ea147f"
+        },
+        "files": [
+            "assets/app.js",
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js",
+            "assets/styles/app.css",
+            "config/packages/webpack_encore.yaml",
+            "package.json",
+            "webpack.config.js"
+        ]
+    },
     "symfony/yaml": {
         "version": "v6.0.3"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.4.0"
+    },
+    "twig/twig": {
+        "version": "v2.15.1"
     }
 }
