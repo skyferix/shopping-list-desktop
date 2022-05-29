@@ -1,0 +1,5 @@
+Flag icons - Freepik - https://www.flaticon.com/authors/freepik
+JS bubble - Gerard Godone-Maresca - https://github.com/ogmaresca/JS-Animated-Bubbles-Background
+Symfony - php framework - https://symfony.com/
+Bootsrap - https://getbootstrap.com/
+Material Designe for Bootrap - https://mdbootstrap.com/
