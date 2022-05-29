@@ -22,9 +22,9 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    App\Security\UserProvider:
+    App\Request\ApiRequest:
         arguments:
-            $apiUrl: '%env(API_URL)%'
+            $apiBaseUrl: '%env(API_URL)%'
 
     App\Subscriber\LocaleSubscriber:
         arguments:

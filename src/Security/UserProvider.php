@@ -4,36 +4,33 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use App\Request\ApiRequest;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
-    private HttpClientInterface $client;
-    private string $apiUrl;
+    private ApiRequest $request;
 
-    public function __construct(HttpClientInterface $client, string $apiUrl)
+    public function __construct(ApiRequest $request)
     {
-        $this->client = $client;
-        $this->apiUrl = $apiUrl;
+        $this->request = $request;
     }
 
     public function loadUserByIdentifier($token): UserInterface
     {
-        $response = $this->client->request('GET', $this->apiUrl . '/user',[
+        $response = $this->request->request('GET','/user/current',[
             'auth_bearer' => $token
         ]);
 
         $statusCode = $response->getStatusCode();
-
         if(200 !== $statusCode){
             return new User();
         }
+
         $content = $response->getContent();
         $userData = json_decode($content);
 

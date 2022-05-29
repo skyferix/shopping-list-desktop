@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use App\Request\ApiRequest;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,19 +17,18 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TokenAuthenticator extends AbstractLoginFormAuthenticator
 {
     public const LOGIN_ROUTE = 'login';
 
     private UrlGeneratorInterface $urlGenerator;
-    private HttpClientInterface $client;
+    private ApiRequest $api;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, HttpClientInterface $client)
+    public function __construct(UrlGeneratorInterface $urlGenerator, ApiRequest $api)
     {
         $this->urlGenerator = $urlGenerator;
-        $this->client = $client;
+        $this->api = $api;
     }
 
     public function authenticate(Request $request): Passport
@@ -38,29 +38,20 @@ class TokenAuthenticator extends AbstractLoginFormAuthenticator
         $request->getSession()->set(Security::LAST_USERNAME, $email);
         $password = $request->request->get('password', '');
 
-        $response = $this->client->request('POST', 'http://localhost:8003/api/login',[
+        $response = $this->api->login('/login', [
             'json' => ['email' => $email, 'password' => $password]
         ]);
 
-        $responseStatusCode = $response->getStatusCode();
-
-        if(401 === $responseStatusCode){
-            throw new CustomUserMessageAuthenticationException('Invalid credentials');
+        if($token = $response->getToken()){
+            return new SelfValidatingPassport(new UserBadge($token), [
+                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+            ]);
         }
 
-        if(500 === $responseStatusCode){
-            throw new CustomUserMessageAuthenticationException('Something went wrong try again later');
-        }
+        $statusCode = $response->getStatusCode();
 
-        if(200 !== $responseStatusCode){
-            throw new CustomUserMessageAuthenticationException('Something went wrong try again later');
-        }
-
-        $apiToken = json_decode($response->getContent())->token;
-
-        return new SelfValidatingPassport(new UserBadge($apiToken), [
-            new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
-        ]);
+        $error = $response->generateErrorBasedOnStatusCode($statusCode);
+        throw new CustomUserMessageAuthenticationException($error,[],$statusCode);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
