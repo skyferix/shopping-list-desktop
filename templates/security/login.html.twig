@@ -14,22 +14,22 @@
 
 {% block body %}
 
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     <div class="mask d-flex align-items-center h-100">
         <div class="container">
             <div class="row justify-content-center">
+
                 <div class="col-xl-5 col-md-8">
-                    <form class="bg-white rounded-5 shadow-5-strong p-5">
+                    <form method="post" class="bg-white rounded-5 shadow-5-strong p-5">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
                         <div class="form-outline mb-4">
-                            <input type="email" id="form1Example1" class="form-control">
+                            <input type="email" name="email" id="form1Example1" class="form-control">
                             <label class="form-label" for="form1Example1" style="margin-left: 0px;">{% trans %}login.email{% endtrans %}</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <div class="form-outline mb-4">
-                            <input type="password" id="form1Example2" class="form-control">
+                            <input type="password" name="password" id="form1Example2" class="form-control">
                             <label class="form-label" for="form1Example2" style="margin-left: 0px;">{% trans %}login.password.password{% endtrans %}</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
 
