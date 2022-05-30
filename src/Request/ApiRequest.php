@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Request;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
@@ -19,7 +18,7 @@ class ApiRequest
     private ResponseInterface $response;
     private array $headers;
     private mixed $content;
-    private int $code;
+    private int $statusCode;
     private ?string $token;
 
     public function __construct(string $apiBaseUrl, HttpClientInterface $client)
@@ -34,7 +33,7 @@ class ApiRequest
             $this->response = $this->client->request('POST', $this->apiBaseUrl . $relativeUrl, $options);
             $token = $this->response->getContent();
         } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
-            $this->code = $e->getCode();
+            $this->statusCode = $e->getCode();
         }
 
         $this->token = json_decode($token??'')?->token;
@@ -42,25 +41,17 @@ class ApiRequest
         return $this;
     }
 
-    public function request(string $method, string $relativeUrl, array $options = [],Request $request=null): ApiRequest
+    public function request(string $token, string $method, string $relativeUrl, array $options = []): ApiRequest
     {
         $options['auth_bearer'] = $token;
 
         try {
             $this->response = $this->client->request($method, $this->apiBaseUrl . $relativeUrl, $options);
-            $this->code = $this->response->getStatusCode();
+            $this->statusCode = $this->response->getStatusCode();
             $this->content = $this->response->getContent();
             $this->headers = $this->response->getHeaders();
-        } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
-            $this->code = $e->getCode();
-        } catch (ClientExceptionInterface $e) {
-            $code = $e->getCode();
-            if($request && $request->hasPreviousSession()){
-                if(400 === $code){
-                    $code = 460;
-                }
-            }
-            $this->code = $code;
+        } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface $e) {
+            $this->statusCode = $e->getCode();
         }
 
         return $this;
@@ -83,7 +74,7 @@ class ApiRequest
 
     public function getStatusCode(): int
     {
-        return $this->code;
+        return $this->statusCode;
     }
 
     public function getHeaders(): array
