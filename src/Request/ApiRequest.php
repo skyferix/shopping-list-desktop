@@ -59,7 +59,6 @@ class ApiRequest
                 }
             }
             $this->code = $code;
-
         }
 
         return $this;
