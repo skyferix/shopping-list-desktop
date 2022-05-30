@@ -1,0 +1,16 @@
+<div class="dropdown d-flex justify-content-center {{ this.type }}">
+    <button
+            class="btn btn-rounded btn-info dropdown-toggle"
+            type="button"
+            id="languageSwitch"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+    >
+        <img width="20" height="20" src="{{ asset(language.flag) }}" alt="{% trans %}lang.flag{% endtrans %}"> {{ language.trans }}
+    </button>
+    <ul id="language-wrap" class="dropdown-menu" aria-labelledby="languageSwitch">
+        <li><a class="dropdown-item" href="/language/lt"><img width="20" height="20" src="{{ asset('build/images/lt.png') }}" alt="{% trans %}lang.flag{% endtrans %}"> {% trans %}lang.lt{% endtrans %}</a></li>
+        <li><a class="dropdown-item" href="/language/en"><img width="20" height="20" src="{{ asset('build/images/en.png') }}" alt="{% trans %}lang.flag{% endtrans %}"> {% trans %}lang.en{% endtrans %}</a></li>
+        <li><a class="dropdown-item" href="/language/pl"><img width="20" height="20" src="{{ asset('build/images/pl.png') }}" alt="{% trans %}lang.flag{% endtrans %}"> {% trans %}lang.pl{% endtrans %}</a></li>
+    </ul>
+</div>

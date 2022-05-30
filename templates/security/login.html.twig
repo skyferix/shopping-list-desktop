@@ -13,7 +13,6 @@
 {% endblock %}
 
 {% block body %}
-
     <div class="mask d-flex align-items-center h-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -44,22 +43,8 @@
 
                         <button type="submit" class="btn btn-primary btn-block">{% trans %}login.sign.in{% endtrans %}</button>
                     </form>
-
-                    <div class="dropdown d-flex justify-content-center mt-3 ">
-                        <button
-                                class="btn btn-rounded btn-info dropdown-toggle"
-                                type="button"
-                                id="languageSwitch"
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"
-                        >
-                            <img width="20" height="20" src="{{ asset(language.flag) }}"> {{ language.trans }}
-                        </button>
-                        <ul id="language-wrap" class="dropdown-menu" aria-labelledby="languageSwitch">
-                            <li><a class="dropdown-item" href="/language/lt"><img width="20" height="20" src="{{ asset('build/images/lt.png') }}"> {% trans %}lang.lt{% endtrans %}</a></li>
-                            <li><a class="dropdown-item" href="/language/en"><img width="20" height="20" src="{{ asset('build/images/en.png') }}"> {% trans %}lang.en{% endtrans %}</a></li>
-                            <li><a class="dropdown-item" href="/language/pl"><img width="20" height="20" src="{{ asset('build/images/pl.png') }}"> {% trans %}lang.pl{% endtrans %}</a></li>
-                        </ul>
+                    <div class="mt-3">
+                        {{ component('language-switcher') }}
                     </div>
                 </div>
             </div>
