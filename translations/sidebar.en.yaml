@@ -1,0 +1,6 @@
+title: 'Shopping list CMS'
+modules:
+    users: 'Users'
+    products: 'Products'
+footer:
+    logout: 'Logout'

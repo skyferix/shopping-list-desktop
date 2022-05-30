@@ -1,0 +1,6 @@
+title: 'Apsipirkimų sąrašo TVS'
+modules:
+    users: 'Naudotojai'
+    products: 'Produktai'
+footer:
+    logout: 'Atsijungti'

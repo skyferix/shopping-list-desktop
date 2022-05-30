@@ -1,0 +1,6 @@
+title: 'CMS listy zakupów'
+modules:
+    users: 'Uźytkownicy'
+    products: 'Produkty'
+footer:
+    logout: 'Wyloguj'
