@@ -1,0 +1,29 @@
+.bg-blue {
+  --bs-bg-opacity: 1;
+  background-color:#50afe4;
+  background-image:linear-gradient(to bottom,#57B7E0,#3C799D);
+  height: 100%;
+  ul > {
+    li > {
+      a.nav-link{
+        color: white;
+        text-transform: none;
+        font-size: 17px;
+      }
+      a.nav-link:hover{
+        background-color: #0d6efd;
+        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
+      }
+    }
+  }
+
+}
+
+.main-sidebar{
+  width: 250px;
+}
+.main-sidebar-footer{
+  .footer-item > {
+
+  }
+}
