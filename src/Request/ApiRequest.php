@@ -44,6 +44,8 @@ class ApiRequest
 
     public function request(string $method, string $relativeUrl, array $options = [],Request $request=null): ApiRequest
     {
+        $options['auth_bearer'] = $token;
+
         try {
             $this->response = $this->client->request($method, $this->apiBaseUrl . $relativeUrl, $options);
             $this->code = $this->response->getStatusCode();

@@ -22,9 +22,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 
     public function loadUserByIdentifier($token): UserInterface
     {
-        $response = $this->request->request('GET','/user/current',[
-            'auth_bearer' => $token
-        ]);
+        $response = $this->request->request($token,'GET','/user/current');
 
         $statusCode = $response->getStatusCode();
         if(200 !== $statusCode){
@@ -32,7 +30,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
         }
 
         $content = $response->getContent();
-        $userData = json_decode($content);
+        $userData = $content;
 
         $user = new User();
 
