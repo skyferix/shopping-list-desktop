@@ -21,7 +21,7 @@
                 <div class="col-xl-5 col-md-8">
                     <form method="post" class="bg-white rounded-5 shadow-5-strong p-5">
                         {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            <div class="alert alert-{% if error.messageKey is same as('Invalid CSRF token.') %}info{% else %}danger{% endif %}">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
                         <div class="form-outline mb-4">
                             <input type="email" name="email" id="form1Example1" class="form-control">
@@ -39,8 +39,7 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="_csrf_token"
-                               value="{{ csrf_token('authenticate') }}"
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"
                         >
 
                         <button type="submit" class="btn btn-primary btn-block">{% trans %}login.sign.in{% endtrans %}</button>
