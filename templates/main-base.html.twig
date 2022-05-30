@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Main template{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('sidebar') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('sidebar') }}
+{% endblock %}
+
+{% block body %}
+    {% block sidebar %}
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-blue main-sidebar">
+            <div>
+                <a href="/" class="d-flex justify-content-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-4">{% trans from 'sidebar' %}title{% endtrans %}</span>
+                </a>
+            </div>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" aria-current="page">
+                            <img class="bi me-2" width="22" height="22" src="{{ asset('build/images/users-256.png') }}" alt="{% trans from 'sidebar' %}modules.users{% endtrans %}">
+                            {% trans from 'sidebar' %}modules.users{% endtrans %}
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                        <img class="bi me-2" width="22" height="22" src="{{ asset('build/images/product-256.png') }}" alt="{% trans from 'sidebar' %}modules.users{% endtrans %}">
+                        {% trans from 'sidebar' %}modules.products{% endtrans %}
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="d-flex justify-content-around main-sidebar-footer">
+                <a class="border border-white rounded-circle p-2 d-flex justify-content-center" data-mdb-toggle="tooltip" title="{% trans from 'sidebar' %}footer.logout{% endtrans %}" href="/logout">
+                    <img width="22" height="22" src="{{ asset('build/images/logout-256.png') }}" alt="{% trans from 'sidebar' %}footer.logout{% endtrans %}">
+                </a>
+                <div class="d-flex justify-content-center">
+                    {{ component('language-switcher', { type: 'up' }) }}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block innerbody %}
+    {% endblock %}
+{% endblock %}
