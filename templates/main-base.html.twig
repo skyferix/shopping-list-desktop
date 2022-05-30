@@ -16,26 +16,16 @@
     {% block sidebar %}
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-blue main-sidebar">
             <div>
-                <a href="/" class="d-flex justify-content-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <a href="{{ path('homepage') }}" class="d-flex justify-content-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-4">{% trans from 'sidebar' %}title{% endtrans %}</span>
                 </a>
             </div>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" aria-current="page">
-                            <img class="bi me-2" width="22" height="22" src="{{ asset('build/images/users-256.png') }}" alt="{% trans from 'sidebar' %}modules.users{% endtrans %}">
-                            {% trans from 'sidebar' %}modules.users{% endtrans %}
-                        </a>
-                    </li>
+                    {{ component('sidebar-module', {path: 'user', src: 'users-256.png', trans: 'modules.users'}) }}
                 {% endif %}
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
-                        <img class="bi me-2" width="22" height="22" src="{{ asset('build/images/product-256.png') }}" alt="{% trans from 'sidebar' %}modules.users{% endtrans %}">
-                        {% trans from 'sidebar' %}modules.products{% endtrans %}
-                    </a>
-                </li>
+                {{ component('sidebar-module', {path: 'product', src: 'product-256.png', trans: 'modules.products'}) }}
             </ul>
             <hr>
             <div class="d-flex justify-content-around main-sidebar-footer">

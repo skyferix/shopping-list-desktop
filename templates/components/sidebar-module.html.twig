@@ -1,0 +1,7 @@
+<li class="nav-item">
+    {% set relativepath = '/' ~ path%}
+    <a href="{{ path(path) }}" class="nav-link {% if relativepath is same as(app.request.pathinfo) %}active{% endif %}" aria-current="page">
+        <img class="bi me-2" width="{{ dimension }}" height="{{ dimension }}" src="build/images/{{ asset(src) }}" alt="{{ this.translation }}">
+        {{ this.translation }}
+    </a>
+</li>
