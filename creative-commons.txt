@@ -3,3 +3,5 @@ JS bubble - Gerard Godone-Maresca - https://github.com/ogmaresca/JS-Animated-Bub
 Symfony - php framework - https://symfony.com/
 Bootsrap - https://getbootstrap.com/
 Material Designe for Bootrap - https://mdbootstrap.com/
+
+Other icons - itim2101 - https://www.flaticon.com/authors/itim2101
